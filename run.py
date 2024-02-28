@@ -16,7 +16,7 @@ from api.routes.agendamento import *
 from api.routes.autenticacao import *
 from api.models.agendamento import *
 from api.models.autenticacao import *
-from api.controllers import *
+from api.controllers.calculo_pesquisa_eleitoral import *
 
 
 if __name__ == '__main__':
