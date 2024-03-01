@@ -5,7 +5,7 @@ from flask_pydantic_spec import Response, Request
 
 from run import app, db, spec
 from api.models.agendamento import Orcamento, ResultadoOrcamento
-from api.controllers.calculo_pesquisa_eleitoral import calculo_pesquisa_eleitoral as cpe
+from api.controllers.calculo_pesquisa_eleitoral import calculo_pesquisa_eleitoral 
 
 @app.post('/orcamento')
 @spec.validate(
@@ -13,11 +13,11 @@ from api.controllers.calculo_pesquisa_eleitoral import calculo_pesquisa_eleitora
 )
 def post_agendamento():
     body = request.context.body.dict()
-    
-    return jsonify(AMBE_generalista=cpe.AMBE_generalista(body), 
-                   AMBE_setorarial=cpe.AMBE_generalista(body), 
-                   VP_BE_generalista=cpe.AMBE_generalista(body), 
-                   VP_BE_setorial=cpe.AMBE_generalista(body))
+    orcamento = calculo_pesquisa_eleitoral(body)
+    return jsonify(AMBEG=orcamento.AMBEG(), 
+                   AMBES=orcamento.AMBEG(),    
+                   AMBPG=orcamento.AMBEG(),
+                   AMBPS=orcamento.AMBEG())
 
 # @app.get('/orcamento')
 # @spec.validate(
